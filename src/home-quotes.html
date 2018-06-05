@@ -41,6 +41,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class homequotes extends Polymer.Element {
       static get is() { return 'home-quotes'; }
+      getQuote() {
+        this.$.getQuoteAjax.generateRequest();
+      }
     }
 
     window.customElements.define(home-quotes.is, home-quotes);
