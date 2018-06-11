@@ -19,11 +19,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="register-login">
   <template>
     <style include="shared-styles">
-      :host {
-        display: block;
-
-        padding: 10px;
-      }
+      .wrapper-btns {
+    margin-top: 15px;
+    }
+    paper-button.link {
+    color: #757575;
+    }
     </style>
 
     <div class="card">
@@ -56,6 +57,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class registerlogin extends Polymer.Element {
       static get is() { return 'register-login'; }
+    static get properties() {
+      return{
+        formData: {
+          type: object,
+          value: {}
+        }
+      }
+    }
     }
 
     window.customElements.define(register-login.is, register-login);
