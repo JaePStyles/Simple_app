@@ -73,6 +73,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
     }
+    _setReqBody() {
+  this.$.registerLoginAjax.body = this.formData;
+}
+postLogin() {
+  this.$.registerLoginAjax.url = 'http://localhost:3001/sessions/create';
+  this._setReqBody();
+  this.$.registerLoginAjax.generateRequest();
+}
+
+postRegister() {
+  this.$.registerLoginAjax.url = 'http://localhost:3001/users';
+  this._setReqBody();
+  this.$.registerLoginAjax.generateRequest();
+}
     }
 
     window.customElements.define(register-login.is, register-login);
