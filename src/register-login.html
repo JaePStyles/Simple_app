@@ -26,6 +26,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     color: #757575;
     }
     </style>
+    <iron-ajax
+    id="registerLoginAjax"
+    method="post"
+    content-type="application/json"
+    handle-as="text"
+    on-response="handleUserResponse"
+    on-error="handleUserError">
+</iron-ajax>
 
     <div class="card">
         <div id="unauthenticated">
