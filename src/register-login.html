@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class registerlogin extends Polymer.Element {
+    class RegisterLogin extends Polymer.Element {
       static get is() { return 'register-login'; }
     static get properties() {
       return{
@@ -87,8 +87,28 @@ postRegister() {
   this._setReqBody();
   this.$.registerLoginAjax.generateRequest();
 }
+handleUserResponse(event) {
+  var response = JSON.parse(event.detail.response);
+
+  if (response.id_token) {
+    this.error = '';
+    this.storedUser = {
+      name: this.formData.username,
+      id_token: response.id_token,
+      access_token: response.access_token,
+      loggedin: true
+    };
+  }
+
+  // reset form data
+  this.formData = {};
+}
+
+handleUserError(event) {
+  this.error = event.detail.request.xhr.response;
+}
     }
 
-    window.customElements.define(register-login.is, register-login);
+    window.customElements.define(Register-Login.is, Register-Login);
   </script>
 </dom-module>
