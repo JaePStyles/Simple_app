@@ -40,7 +40,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h1>Log In</h1>
     
         <p><strong>Log in</strong> or <strong>sign up</strong> to access secret Chuck Norris quotes!</p>
-    
+        <template is="dom-if" if="[[error]]">
+          <p class="alert-error"><strong>Error:</strong> [[error]]</p>
+      </template>
         <paper-input-container>
           <label slot="input">Username</label>
           <iron-input slot="input" bind-value="{{formData.username}}">
