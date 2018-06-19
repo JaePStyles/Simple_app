@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
         <div id="unauthenticated" hidden$="[[storedUser.loggedin]]">
             <h1>Log In</h1>
-    
+        
         <p><strong>Log in</strong> or <strong>sign up</strong> to access secret Chuck Norris quotes!</p>
         <template is="dom-if" if="[[error]]">
           <p class="alert-error"><strong>Error:</strong> [[error]]</p>
@@ -69,6 +69,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="wrapper-btns">
           <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
           <paper-button class="link" on-tap="postRegister">Sign Up</paper-button>
+        </div>
+        <div id="authenticated" hidden$="[[!storedUser.loggedin]]">
+            <h2>Hello, [[storedUser.name]]!</h2>
+            <p>You are currently logged in. You can access <a href="[[rootPath]]secret-quotes">Secret Quotes</a>!</p>
         </div>
     </div>
   </template>
