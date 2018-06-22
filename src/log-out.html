@@ -1,0 +1,28 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
+
+<dom-module id="log-out">
+        <template>
+          <style>
+            :host {
+              margin: 0;
+              padding: 0;
+            }
+          </style>
+          
+          <!-- MARKUP GOES HERE -->
+        </template>
+      
+        <script>
+            (function() {
+                class LogOut extends Polymer.Element {
+                    static get is() {
+                        return 'log-out';
+                    }
+                }
+      
+                window.customElements.define(LogOut.is, LogOut);
+            }());
+        </script>
+      </dom-module>
