@@ -3,6 +3,15 @@
 <link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
 
 <dom-module id="log-out">
+        <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
+        <template is="dom-if" if="{{!link}}">
+          <paper-button raised class="indigo" on-tap="logout">Log Out [[[storedUser.name]]]</paper-button>
+        </template>
+        
+        <template is="dom-if" if="{{link}}">
+          <paper-button class="link" on-tap="logout">Log Out [[[storedUser.name]]]</paper-button>
+        </template>
         <template>
           <style>
             :host {
@@ -20,6 +29,19 @@
                     static get is() {
                         return 'log-out';
                     }
+                    static get properties() {
+        return {
+            storedUser: Object,
+            link: {
+                type: Boolean,
+                value: false
+            }
+        }
+    }
+
+    logout() {
+        this.storedUser = null;
+    }
                 }
       
                 window.customElements.define(LogOut.is, LogOut);
