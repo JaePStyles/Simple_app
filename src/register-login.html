@@ -76,6 +76,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h2>Hello, [[storedUser.name]]!</h2>
             <p>You are currently logged in. You can access <a href="[[rootPath]]secret-quotes">Secret Quotes</a>!</p>
         </div>
+        <div id="authenticated" hidden$="[[!storedUser.loggedin]]">
+            ...
+            <log-out stored-user="{{storedUser}}"></log-out>
+        </div>
     </div>
   </template>
 
