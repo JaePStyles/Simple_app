@@ -25,6 +25,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../src/Log-out.html">
 <link rel="import" href="../src/my-app.html">
 <link rel="import" href="../src/not-found.html">
+<link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="log-out.html">
 
 <dom-module id="my-app">
   <template>
@@ -84,8 +87,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+            <div name="home-quotes">
           <a name="home-quotes" href="[[rootPath]]home-quotes">home</a>
+            </div>
+            <div name="secret-quotes" hidden$="[[!storedUser.loggedin]]">
           <a name="secret-quotes" href="[[rootPath]]secret-quotes">secret quotes</a>
+          </div>
         </iron-selector>
       </app-drawer>
 
