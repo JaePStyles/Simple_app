@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="log-out.html">
 
-<dom-module id="my-app">
+<dom-module id="My-App">
   <template>
     <style>
       :host {
@@ -68,6 +68,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+      app-header .greeting,
+      app-header a {
+       color: #fff;
+       font-size: 13px;
+      }
+      app-header .greeting {
+      border-right: 1px solid rgba(255,255,255,.5);
+      display: inline-block;
+      padding-right: 6px;
+}
     </style>
 
     <app-location
@@ -141,6 +151,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
+          storedUser: Object,
         };
       }
 
