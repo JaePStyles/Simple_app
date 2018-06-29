@@ -18,7 +18,33 @@
 
                 padding-right: 6px;
             }
-            
+            .greeting img{
+                border-radius: 100px;
+                display: inline-block;
+                height: 4px;
+                margin-right: 4px;
+                vertical-align: middle;
+                width: 24px;
+            }
+            a {
+                color: #fff
+            }
+            paper-button.link{
+                color: #fff;
+                display: inline-block;
+                font-size: 13px;
+            }
+            paper-button.indigo{
+                background-color: var(--papaer-indigo-500);
+                color: white;
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-pik-a200) !important;
+                    color: white !important;
+                };
+                }
+            paper-button.indigo:hover {
+                background-color: var(--paper-indigo-400);
+                }
         </style>
     </template>
 </dom-module>
