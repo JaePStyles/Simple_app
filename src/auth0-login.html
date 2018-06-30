@@ -46,5 +46,29 @@
                 background-color: var(--paper-indigo-400);
                 }
         </style>
+
+        <iron-localstorage
+        name="user-storage"
+        value="{{storedUser}}"
+        on-iron-localstorage-load="_setProfileImg"></iron-localstorage>
+
+        <brum-global-variable key="userData" value="{{storedUser}}"></brum-global-variable>
+
+    <paper-button class="link" on-tap="authorize" hidden$="[[storedUser.loggedin]]">Log In</paper-button>
+    <div hidden$="[[!storedUser.loggedin]]">
+        <span class="greeting"><img src="[[profileImgSrc]]">[[storedUser.profile.nickname]]</span>
+        <paper-button class="link" on-tap="logOut">Log Out</paper-button>
+      </div>
     </template>
+    <script>
+        (function(){
+            const webAuth = new auth0.webAuth({
+                domain: '<DOMAIN>',
+                clientID: '<CLIENTID>',
+                responceType: 'token',
+                redirectUri: '<REDIRECT_URI>'
+            });
+            
+        })
+    </script>
 </dom-module>
