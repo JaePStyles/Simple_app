@@ -68,7 +68,49 @@
                 responceType: 'token',
                 redirectUri: '<REDIRECT_URI>'
             });
-            
-        })
+
+            class Auth0Login extends Polymer.Element {
+              static get is() { return 'auth0-login'; }
+
+              static get properties() {
+                  return {
+                      storedUser: Object,
+                      profileImgSrc: {
+                          type: String,
+                          value: ''
+                      }
+                  }
+              }
+              connectedCallback() {
+                  super.connectedCallback();
+                  const _self = this;
+
+                  if(window.location.hash) {
+                      webauth.parseHash({hash: window.location.hash }, function(error, authResult) {
+                          if (error) {
+                              console.error('Error reading hash', error);
+                              return;
+                          }
+                        if (authResult) {
+                            webAUth.client.userInfo(authResult.accessToken, function(error,profile) {
+                                if (error) {
+                                    console.error('error getting profile:',error);
+                                    return;
+                                }
+                                _self.storedUser = {
+                                    name: profile.name,
+                                    id_token: authResult.id_token,
+                                    access_token: authresult.acessToken,
+                                    loggedin: true,
+                                    prefile: profile
+                                };
+                                _self .prefileImgSrc = profile.picture;
+                            });
+                        }
+                      });
+                  }
+              }
+              _set
+        });
     </script>
 </dom-module>
