@@ -110,7 +110,18 @@
                       });
                   }
               }
-              _set
-        });
+              _setProfileImg() {
+                 this.profileImgSrc = this.storedUser.profile.picture;
+              }
+              authorize() {
+                  webAuth.authorize();
+              }
+              logOut() {
+                  this.storedUSer = null;
+                  this.profileIMgSrc= '';
+              }
+            }
+            window.customElements.define(Auth0Login.is, Auth0Login)
+        }());
     </script>
 </dom-module>
