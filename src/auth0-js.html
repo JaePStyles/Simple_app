@@ -1,1 +1,8 @@
-<script src="https://cdn.auth0.com/js/auth0/9.0.0/auth0.min.js"></script>
+<script src="https://cdn.auth0.com/js/auth0/9.0.0/auth0.min.js">
+const webAuth = new auth0.WebAuth({
+    domain: '<DOMAIN>.auth0.com',
+    clientID: '<CLIENTID>',
+    responseType: 'token',
+    redirectUri: 'http://localhost:8081'
+});
+</script>
