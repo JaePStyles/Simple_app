@@ -21,13 +21,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
-<link rel="import" href="../src/home-quotes.html">
-<link rel="import" href="../src/Log-out.html">
-<link rel="import" href="../src/my-app.html">
-<link rel="import" href="../src/not-found.html">
+<link rel="import" href="Home-Quotes.html">
+<link rel="import" href="Log-out.html">
+<link rel="import" href="my-app.html">
+<link rel="import" href="Not-Found.html">
+<link rel="import" href="Register-Login.html">
+<link rel="import" href="Secret-Quotes.html">
 <link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
-<link rel="import" href="log-out.html">
+<link rel="import" href="auth0-login.html">
 
 <dom-module id="My-App">
   <template>
@@ -114,6 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
             <div main-title>My App</div>
             <a name="register-login" href="[[rootPath]]register-login">Log in</a>
+            <auth0-login></auth0-login>
           </app-toolbar>
         </app-header>
 
