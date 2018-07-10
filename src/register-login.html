@@ -9,7 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../bower_components/app-storage/app-localstorage/app-localstorage-document.html">
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
@@ -18,9 +18,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="log-out.html">
 <dom-module id="register-login">
-  <iron-localstorage name="user-storage"
-                     value="{{storedUser}}"></iron-localstorage>
-  <app-location route="{{route}}"></app-location>
   <template>
     <style include="shared-styles">
       .wrapper-btns {
@@ -37,7 +34,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 14px;
         padding: 10px;
       }
+      [hidden] {
+        display: none !important;
+      }
     </style>
+    <app-localstorage-document
+        key="secretQuotes:auth" data="{{storedUser}}">
+    </app-localstorage-document>
+    <app-location route="{{route}}"></app-location>
     <iron-ajax
         id="registerLoginAjax"
         method="post"
@@ -101,7 +105,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: String,
             value: '',
           },
+          storedUser: {
+            type: Object,
+            value: function() {
+              return {};
+            }
+          }
         };
+      }
+      static get observers() {
+        return [
+          'storedUserChanged(storedUser.*)',
+        ];
+      }
+      storedUserChanged(storedUser) {
+        if (!storedUser)return;
+        if (!storedUser.base)return;
+        console.log(storedUser.base);
       }
       _setReqBody() {
         this.$.registerLoginAjax.body = this.formData;
@@ -117,15 +137,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.registerLoginAjax.generateRequest();
       }
       handleUserResponse(event) {
+        console.log(event);
         let response = JSON.parse(event.detail.response);
         if (response.id_token) {
           this.error = '';
-          this.storedUser = {
+          this.set('storedUser', {
             name: this.formData.username,
             id_token: response.id_token,
             access_token: response.access_token,
             loggedin: true,
-          };
+          });
         }
         if (response.id_token) {
           this.set('route.path', '/secret-quotes');

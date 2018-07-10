@@ -7,7 +7,6 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -29,34 +28,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/brum-global-variable/brum-global-variable.html">
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="auth0-login.html">
-
 <dom-module id="my-app">
   <template>
     <style>
       :host {
         --app-primary-color: #4285f4;
         --app-secondary-color: black;
-
         display: block;
       }
-
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
-
       app-header {
         color: #fff;
         background-color: var(--app-primary-color);
       }
-
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
-
       .drawer-list {
         margin: 0 20px;
       }
-
       .drawer-list a {
         display: block;
         padding: 0 16px;
@@ -64,7 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-secondary-color);
         line-height: 40px;
       }
-
       .drawer-list a.iron-selected {
         color: black;
         font-weight: bold;
@@ -80,19 +71,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding-right: 6px;
 }
     </style>
-
     <app-location
         route="{{route}}"
         url-space-regex="^[[rootPath]]">
     </app-location>
-
     <app-route
         route="{{route}}"
         pattern="[[rootPath]]:page"
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
-
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
       <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
@@ -106,10 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
         </iron-selector>
       </app-drawer>
-
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
@@ -118,7 +104,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <auth0-login></auth0-login>
           </app-toolbar>
         </app-header>
-
         <iron-pages
             selected="[[page]]"
             attr-for-selected="name"
@@ -132,15 +117,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-header-layout>
     </app-drawer-layout>
   </template>
-
   <script>
     // Gesture events like tap and track generated from touch will not be
     // preventable, allowing for better scrolling performance.
     Polymer.setPassiveTouchGestures(true);
-
     class MyApp extends Polymer.Element {
       static get is() { return 'my-app'; }
-
       static get properties() {
         return {
           page: {
@@ -156,23 +138,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           storedUser: Object,
         };
       }
-
       static get observers() {
         return [
           '_routePageChanged(routeData.page)',
         ];
       }
-
       _routePageChanged(page) {
-        console.log('register-login')
-        this.page = page || 'home-quotes';
-
+        this.page = page || 'register-login';
         // Close a non-persistent drawer when the page & route are changed.
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
       }
-
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         const resolvedPageUrl = this.resolveUrl(page + '.html');
@@ -182,12 +159,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this._showPage404.bind(this),
             true);
       }
-
       _showPage404() {
         this.page = 'not-found';
       }
     }
-
     window.customElements.define(MyApp.is, MyApp);
   </script>
 </dom-module>
